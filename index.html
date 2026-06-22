@@ -244,6 +244,59 @@
           <small>数字分身</small>
         </span>
       </button>
+        <section id="avatar-chat" class="section chat-section" aria-labelledby="chat-title">
+          <div class="section-heading">
+            <p class="eyebrow">DIGITAL TWIN</p>
+            <h2 id="chat-title">和 Faye 的数字分身聊两句</h2>
+            <p>
+              这是第一版本地聊天原型。你可以直接问候，也可以试试下面的问题按钮。
+            </p>
+          </div>
+
+          <div class="chat-card">
+            <div class="chat-header">
+              <div class="chat-avatar">F</div>
+              <div>
+                <h3>Faye's Digital Twin</h3>
+                <p>知道 Faye 的身份、近况、方向和几个常见问题。</p>
+              </div>
+              <span class="status-pill">online</span>
+            </div>
+
+            <div id="chatMessages" class="chat-messages" aria-live="polite">
+              <div class="message bot">
+                <p>
+                  Hi，我是 Faye 的数字分身。可以问我：为什么选择计算机、加拿大本科体验，
+                  或者今天心情怎么样。
+                </p>
+              </div>
+            </div>
+
+            <div class="prompt-chips" aria-label="Suggested questions">
+              <button type="button" data-question="为什么高中是零基础，大学选择学习计算机？">
+                为什么选择计算机？
+              </button>
+              <button type="button" data-question="普高去加拿大读本科难不难？就读体验怎么样？">
+                加拿大本科体验
+              </button>
+              <button type="button" data-question="你今天心情怎么样？">
+                今天心情怎么样
+              </button>
+            </div>
+
+            <form id="chatForm" class="chat-form">
+              <label class="sr-only" for="chatInput">Ask Faye's digital twin</label>
+              <input
+                id="chatInput"
+                type="text"
+                placeholder="输入一个问题，比如：你最近在做什么？"
+                autocomplete="off"
+              />
+              <button type="submit">发送</button>
+            </form>
+          </div>
+        </section>
+      </main>
     </div>
 
     <div class="samoyed-lane" aria-hidden="true">

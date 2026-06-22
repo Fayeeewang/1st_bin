@@ -11,6 +11,11 @@ const promptButtons = document.querySelectorAll("[data-question]");
 
 const chatHistory = [];
 
+const chatForm = document.querySelector("#chatForm");
+const chatInput = document.querySelector("#chatInput");
+const chatMessages = document.querySelector("#chatMessages");
+const promptButtons = document.querySelectorAll("[data-question]");
+
 const replies = [
   {
     keywords: ["为什么", "零基础", "计算机", "高中", "cs", "computer"],
@@ -45,6 +50,7 @@ const replies = [
 ];
 
 function getLocalReply(question) {
+function getReply(question) {
   const normalizedQuestion = question.trim().toLowerCase();
   const matchedReply = replies.find((reply) =>
     reply.keywords.some((keyword) => normalizedQuestion.includes(keyword.toLowerCase())),
@@ -113,6 +119,9 @@ async function getLlmReply(question) {
 }
 
 async function askDigitalTwin(question) {
+}
+
+function askDigitalTwin(question) {
   const trimmedQuestion = question.trim();
 
   if (!trimmedQuestion) {
@@ -165,6 +174,12 @@ openChatButton.addEventListener("click", () => {
 collapseChatButton.addEventListener("click", () => {
   setChatOpen(false);
 });
+
+
+  window.setTimeout(() => {
+    addMessage(getReply(trimmedQuestion), "bot");
+  }, 280);
+}
 
 chatForm.addEventListener("submit", (event) => {
   event.preventDefault();

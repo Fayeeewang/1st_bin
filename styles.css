@@ -450,6 +450,9 @@ h3 {
 .chat-teaser-section {
   display: grid;
   grid-template-columns: 0.82fr 1.18fr;
+.chat-section {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
   gap: 1.5rem;
   align-items: start;
 }
@@ -904,6 +907,7 @@ h3 {
   .info-grid,
   .interest-layout,
   .chat-teaser-section {
+  .chat-section {
     grid-template-columns: 1fr;
   }
 
