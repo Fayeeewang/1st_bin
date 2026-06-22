@@ -1,7 +1,15 @@
+const chatWidget = document.querySelector("#chatWidget");
+const chatToggle = document.querySelector("#chatToggle");
+const openChatButton = document.querySelector("#openChatButton");
+const collapseChatButton = document.querySelector("#collapseChatButton");
 const chatForm = document.querySelector("#chatForm");
 const chatInput = document.querySelector("#chatInput");
 const chatMessages = document.querySelector("#chatMessages");
+const chatModeText = document.querySelector("#chatModeText");
+const sendChatButton = document.querySelector("#sendChatButton");
 const promptButtons = document.querySelectorAll("[data-question]");
+
+const chatHistory = [];
 
 const replies = [
   {
@@ -36,7 +44,7 @@ const replies = [
   },
 ];
 
-function getReply(question) {
+function getLocalReply(question) {
   const normalizedQuestion = question.trim().toLowerCase();
   const matchedReply = replies.find((reply) =>
     reply.keywords.some((keyword) => normalizedQuestion.includes(keyword.toLowerCase())),
@@ -57,9 +65,54 @@ function addMessage(content, sender) {
   message.append(paragraph);
   chatMessages.append(message);
   chatMessages.scrollTop = chatMessages.scrollHeight;
+  return message;
 }
 
-function askDigitalTwin(question) {
+function setChatOpen(isOpen) {
+  chatWidget.classList.toggle("is-collapsed", !isOpen);
+  chatToggle.setAttribute("aria-expanded", String(isOpen));
+  chatToggle.setAttribute(
+    "aria-label",
+    isOpen ? "Collapse Faye's digital twin chat" : "Open Faye's digital twin chat",
+  );
+
+  if (isOpen) {
+    window.setTimeout(() => chatInput.focus(), 120);
+  }
+}
+
+function setChatLoading(isLoading) {
+  sendChatButton.disabled = isLoading;
+  chatInput.disabled = isLoading;
+  sendChatButton.textContent = isLoading ? "思考中" : "发送";
+}
+
+async function getLlmReply(question) {
+  const response = await fetch("/api/chat", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      message: question,
+      history: chatHistory.slice(-8),
+    }),
+  });
+
+  if (!response.ok) {
+    throw new Error(`Chat API returned ${response.status}`);
+  }
+
+  const data = await response.json();
+
+  if (!data.reply) {
+    throw new Error("Chat API returned no reply");
+  }
+
+  return data.reply;
+}
+
+async function askDigitalTwin(question) {
   const trimmedQuestion = question.trim();
 
   if (!trimmedQuestion) {
@@ -68,11 +121,50 @@ function askDigitalTwin(question) {
 
   addMessage(trimmedQuestion, "user");
   chatInput.value = "";
+  setChatLoading(true);
 
-  window.setTimeout(() => {
-    addMessage(getReply(trimmedQuestion), "bot");
-  }, 280);
+  const thinkingMessage = addMessage("正在思考中...", "bot");
+  let answer;
+
+  try {
+    answer = await getLlmReply(trimmedQuestion);
+    chatModeText.textContent = "大模型回复 · online";
+  } catch (error) {
+    answer = getLocalReply(trimmedQuestion);
+    chatModeText.textContent = "本地兜底回复 · API 未连接";
+  } finally {
+    thinkingMessage.remove();
+    setChatLoading(false);
+  }
+
+  addMessage(answer, "bot");
+  chatHistory.push(
+    {
+      role: "user",
+      content: trimmedQuestion,
+    },
+    {
+      role: "assistant",
+      content: answer,
+    },
+  );
+
+  if (chatHistory.length > 12) {
+    chatHistory.splice(0, chatHistory.length - 12);
+  }
 }
+
+chatToggle.addEventListener("click", () => {
+  setChatOpen(true);
+});
+
+openChatButton.addEventListener("click", () => {
+  setChatOpen(true);
+});
+
+collapseChatButton.addEventListener("click", () => {
+  setChatOpen(false);
+});
 
 chatForm.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -81,6 +173,7 @@ chatForm.addEventListener("submit", (event) => {
 
 promptButtons.forEach((button) => {
   button.addEventListener("click", () => {
+    setChatOpen(true);
     askDigitalTwin(button.dataset.question);
   });
 });

@@ -150,59 +150,100 @@
           </div>
         </section>
 
-        <section id="avatar-chat" class="section chat-section" aria-labelledby="chat-title">
+        <section id="avatar-chat" class="section chat-teaser-section" aria-labelledby="chat-title">
           <div class="section-heading">
             <p class="eyebrow">DIGITAL TWIN</p>
-            <h2 id="chat-title">和 Faye 的数字分身聊两句</h2>
+            <h2 id="chat-title">数字分身升级成可折叠浮窗</h2>
             <p>
-              这是第一版本地聊天原型。你可以直接问候，也可以试试下面的问题按钮。
+              v2 会在右下角常驻一个 baby blue 聊天浮窗。打开后可以向 Faye 的数字分身提问；
+              部署时配置 API key 后，它会优先调用大模型回复。
             </p>
           </div>
 
-          <div class="chat-card">
-            <div class="chat-header">
-              <div class="chat-avatar">F</div>
-              <div>
-                <h3>Faye's Digital Twin</h3>
-                <p>知道 Faye 的身份、近况、方向和几个常见问题。</p>
-              </div>
-              <span class="status-pill">online</span>
+          <div class="chat-teaser-card">
+            <div>
+              <h3>浮窗式体验</h3>
+              <p>不占据主页版面，面试官或朋友浏览到任何位置都能随时打开对话。</p>
             </div>
-
-            <div id="chatMessages" class="chat-messages" aria-live="polite">
-              <div class="message bot">
-                <p>
-                  Hi，我是 Faye 的数字分身。可以问我：为什么选择计算机、加拿大本科体验，
-                  或者今天心情怎么样。
-                </p>
-              </div>
+            <div>
+              <h3>大模型优先</h3>
+              <p>已预留 `/api/chat` 后端接口；没有配置 key 时会自动使用本地 persona 兜底。</p>
             </div>
-
-            <div class="prompt-chips" aria-label="Suggested questions">
-              <button type="button" data-question="为什么高中是零基础，大学选择学习计算机？">
-                为什么选择计算机？
-              </button>
-              <button type="button" data-question="普高去加拿大读本科难不难？就读体验怎么样？">
-                加拿大本科体验
-              </button>
-              <button type="button" data-question="你今天心情怎么样？">
-                今天心情怎么样
-              </button>
-            </div>
-
-            <form id="chatForm" class="chat-form">
-              <label class="sr-only" for="chatInput">Ask Faye's digital twin</label>
-              <input
-                id="chatInput"
-                type="text"
-                placeholder="输入一个问题，比如：你最近在做什么？"
-                autocomplete="off"
-              />
-              <button type="submit">发送</button>
-            </form>
+            <button id="openChatButton" class="button primary" type="button">打开数字分身</button>
           </div>
         </section>
       </main>
+    </div>
+
+    <div id="chatWidget" class="chat-widget is-collapsed">
+      <section
+        id="chatPanel"
+        class="chat-card floating-chat-panel"
+        aria-label="Faye's digital twin chat"
+      >
+        <div class="chat-header">
+          <div class="chat-avatar">F</div>
+          <div>
+            <h3>Faye's Digital Twin</h3>
+            <p id="chatModeText">AI mode when API is configured</p>
+          </div>
+          <button
+            id="collapseChatButton"
+            class="collapse-chat-button"
+            type="button"
+            aria-label="Collapse digital twin chat"
+          >
+            –
+          </button>
+        </div>
+
+        <div id="chatMessages" class="chat-messages" aria-live="polite">
+          <div class="message bot">
+            <p>
+              Hi，我是 Faye 的数字分身。可以问我：为什么选择计算机、加拿大本科体验，
+              或者今天心情怎么样。
+            </p>
+          </div>
+        </div>
+
+        <div class="prompt-chips" aria-label="Suggested questions">
+          <button type="button" data-question="为什么高中是零基础，大学选择学习计算机？">
+            为什么选择计算机？
+          </button>
+          <button type="button" data-question="普高去加拿大读本科难不难？就读体验怎么样？">
+            加拿大本科体验
+          </button>
+          <button type="button" data-question="你今天心情怎么样？">
+            今天心情怎么样
+          </button>
+        </div>
+
+        <form id="chatForm" class="chat-form">
+          <label class="sr-only" for="chatInput">Ask Faye's digital twin</label>
+          <input
+            id="chatInput"
+            type="text"
+            placeholder="输入一个问题，比如：你最近在做什么？"
+            autocomplete="off"
+          />
+          <button id="sendChatButton" type="submit">发送</button>
+        </form>
+      </section>
+
+      <button
+        id="chatToggle"
+        class="chat-toggle"
+        type="button"
+        aria-label="Open Faye's digital twin chat"
+        aria-expanded="false"
+        aria-controls="chatPanel"
+      >
+        <span class="chat-toggle-avatar">F</span>
+        <span>
+          <strong>Ask Faye</strong>
+          <small>数字分身</small>
+        </span>
+      </button>
     </div>
 
     <div class="samoyed-lane" aria-hidden="true">
