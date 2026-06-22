@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Faye Wang | Personal Homepage</title>
+    <meta
+      name="description"
+      content="Faye Wang 的个人主页原型，包含个人介绍、兴趣展示和数字分身聊天区。"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <nav class="nav" aria-label="Main navigation">
+          <a class="brand" href="#top" aria-label="Faye Wang homepage">
+            <span class="brand-mark">FW</span>
+            <span>Faye Wang</span>
+          </a>
+          <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#interests">Interests</a>
+            <a href="#avatar-chat">Digital Twin</a>
+          </div>
+        </nav>
+
+        <section id="top" class="hero-grid" aria-labelledby="hero-title">
+          <div class="hero-copy">
+            <p class="eyebrow">UALBERTA '29 · VIBE CODING IN PROGRESS</p>
+            <h1 id="hero-title">Faye Wang<br /><span>王伊凡</span></h1>
+            <p class="tagline">vibe coder / 爱摄影计算机大一学生</p>
+            <p class="hero-intro">
+              一个看起来像 e 人、实际上是 i 人的全职学习者。正在从零开始进入计算机世界，
+              对计算机视觉、深度学习、摄影和健康生活保持强烈好奇。
+            </p>
+            <div class="hero-actions">
+              <a class="button primary" href="#avatar-chat">问问数字分身</a>
+              <a class="button secondary" href="#interests">看看兴趣墙</a>
+            </div>
+          </div>
+
+          <aside class="profile-card" aria-label="Faye profile summary">
+            <div class="avatar" aria-label="Faye Wang avatar">
+              <span>F</span>
+              <div class="camera-dot" aria-hidden="true"></div>
+            </div>
+            <div>
+              <h2>Faye Wang</h2>
+              <p>Computer Science freshman, UAlberta 2029</p>
+            </div>
+            <dl class="quick-facts">
+              <div>
+                <dt>Current focus</dt>
+                <dd>vibe coding 起步中</dd>
+              </div>
+              <div>
+                <dt>Care about</dt>
+                <dd>Computer Vision / Deep Learning</dd>
+              </div>
+              <div>
+                <dt>Signature</dt>
+                <dd>看似 e 人，实际 i 人</dd>
+              </div>
+            </dl>
+          </aside>
+        </section>
+      </header>
+
+      <main>
+        <section id="about" class="section about-section">
+          <div class="section-heading">
+            <p class="eyebrow">ABOUT ME</p>
+            <h2>把“我在学 anything”变成可被看见的成长地图</h2>
+          </div>
+          <div class="info-grid">
+            <article class="info-card">
+              <span class="card-icon">01</span>
+              <h3>身份</h3>
+              <p>University of Alberta 2029 届本科学生，正在建立自己的计算机学习体系。</p>
+            </article>
+            <article class="info-card">
+              <span class="card-icon">02</span>
+              <h3>最近</h3>
+              <p>vibe coding 起步中，尝试把灵感更快做成可以交互的小作品。</p>
+            </article>
+            <article class="info-card">
+              <span class="card-icon">03</span>
+              <h3>方向</h3>
+              <p>关注计算机视觉、深度学习，也想把 AI 应用到日常审美与生活方式里。</p>
+            </article>
+          </div>
+        </section>
+
+        <section id="interests" class="section interests-section">
+          <div class="section-heading">
+            <p class="eyebrow">INTEREST WALL</p>
+            <h2>一些会慢慢扩展成作品集的兴趣入口</h2>
+          </div>
+          <div class="interest-layout">
+            <article class="movie-wall" aria-label="Sci-fi movie collection wall">
+              <div class="poster poster-large">
+                <span>Arrival</span>
+              </div>
+              <div class="poster">
+                <span>Interstellar</span>
+              </div>
+              <div class="poster">
+                <span>Blade Runner</span>
+              </div>
+              <div class="poster">
+                <span>Dune</span>
+              </div>
+              <div class="poster">
+                <span>Her</span>
+              </div>
+              <div class="poster">
+                <span>Ex Machina</span>
+              </div>
+            </article>
+
+            <div class="interest-cards">
+              <article class="mini-card">
+                <h3>读书 / 书单</h3>
+                <p>先收藏灵感，之后做成可筛选的 reading shelf。</p>
+              </article>
+              <article class="mini-card">
+                <h3>运动饮食与健康</h3>
+                <p>记录训练、饮食搭配和让状态变好的小实验。</p>
+              </article>
+              <article class="mini-card">
+                <h3>穿搭 / 美妆 / AI 试色</h3>
+                <p>记得 shoppers 那种 AI 上脸试色，也想做更好玩的普及推广。</p>
+              </article>
+              <article class="mini-card">
+                <h3>滑雪与户外</h3>
+                <p>雪场、路线、装备和户外生活感，后续都可以慢慢上墙。</p>
+              </article>
+              <article class="mini-card">
+                <h3>萨摩耶与冰美式</h3>
+                <p>页面底部先安排一只会走路的 Samoyed，冰美式永远在线。</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section id="avatar-chat" class="section chat-section" aria-labelledby="chat-title">
+          <div class="section-heading">
+            <p class="eyebrow">DIGITAL TWIN</p>
+            <h2 id="chat-title">和 Faye 的数字分身聊两句</h2>
+            <p>
+              这是第一版本地聊天原型。你可以直接问候，也可以试试下面的问题按钮。
+            </p>
+          </div>
+
+          <div class="chat-card">
+            <div class="chat-header">
+              <div class="chat-avatar">F</div>
+              <div>
+                <h3>Faye's Digital Twin</h3>
+                <p>知道 Faye 的身份、近况、方向和几个常见问题。</p>
+              </div>
+              <span class="status-pill">online</span>
+            </div>
+
+            <div id="chatMessages" class="chat-messages" aria-live="polite">
+              <div class="message bot">
+                <p>
+                  Hi，我是 Faye 的数字分身。可以问我：为什么选择计算机、加拿大本科体验，
+                  或者今天心情怎么样。
+                </p>
+              </div>
+            </div>
+
+            <div class="prompt-chips" aria-label="Suggested questions">
+              <button type="button" data-question="为什么高中是零基础，大学选择学习计算机？">
+                为什么选择计算机？
+              </button>
+              <button type="button" data-question="普高去加拿大读本科难不难？就读体验怎么样？">
+                加拿大本科体验
+              </button>
+              <button type="button" data-question="你今天心情怎么样？">
+                今天心情怎么样
+              </button>
+            </div>
+
+            <form id="chatForm" class="chat-form">
+              <label class="sr-only" for="chatInput">Ask Faye's digital twin</label>
+              <input
+                id="chatInput"
+                type="text"
+                placeholder="输入一个问题，比如：你最近在做什么？"
+                autocomplete="off"
+              />
+              <button type="submit">发送</button>
+            </form>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div class="samoyed-lane" aria-hidden="true">
+      <div class="samoyed">
+        <div class="tail"></div>
+        <div class="body"></div>
+        <div class="head">
+          <div class="ear left"></div>
+          <div class="ear right"></div>
+          <div class="face">
+            <span class="eye left"></span>
+            <span class="eye right"></span>
+            <span class="nose"></span>
+          </div>
+        </div>
+        <div class="leg leg-one"></div>
+        <div class="leg leg-two"></div>
+      </div>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
